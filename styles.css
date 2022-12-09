@@ -1,0 +1,31 @@
+html,
+body {
+    min-height:100vh;
+    min-width:100vw
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.tile {
+    white-space: pre-wrap;
+}
+
+#title {
+    font-weight: bold;
+}
+
+#tooltip {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    white-space: pre-wrap;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid
+}
