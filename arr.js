@@ -6,9 +6,48 @@ let root;
 
 let scalex;
 let scaley;
+  let w
+  let h
 
-let w = 900;
-let h = 600;
+
+const mediaQuery = window.matchMedia('(max-width: 900px)')
+const mediaQuery1 = window.matchMedia('(max-width: 810px)')
+const mediaQuery2 = window.matchMedia('(max-width: 720px)')
+const mediaQuery3 = window.matchMedia('(max-width: 630px)')
+const mediaQuery4 = window.matchMedia('(max-width: 540px)')
+const mediaQuery5 = window.matchMedia('(max-width: 450px)')
+const mediaQuery6 = window.matchMedia('(max-width: 360px)')
+
+// Check if the media query is true
+
+if (mediaQuery4.matches){
+w= 270
+h= 180
+} else if (mediaQuery4.matches){
+w=360
+h= 240
+} else if (mediaQuery4.matches){
+w=450
+h= 300
+} else if (mediaQuery3.matches){
+w=540
+h= 360
+} else if (mediaQuery2.matches){
+w=630
+h= 420
+} else if (mediaQuery1.matches){
+w=720
+h= 480
+} else if (mediaQuery.matches) {
+  // Then trigger an alert
+ w= 810
+ h= 540
+} else {
+w= 900;
+h= 600
+}
+
+
  let padding= 10;
 
 let colors = ["#00FFFF", "#1f2367", "#eec900", "#d921cf", "#330d38", "#621e2c", "#dfe4fc"]
@@ -20,7 +59,7 @@ let legend = d3.select("#legend");
 let drawCanves=()=>{
   
   legend.attr("height", 150)
-        .attr("width", 800)
+        .attr("width", w - 100)
  
   canves.attr("height", h)
         .attr("width", w)
@@ -36,8 +75,10 @@ let tooltip = d3.select("body")
                  .style("width", "auto")
   
   scalex = d3.scaleLinear()
-             .domain([0, 6])
-             .range([30, 600])
+             .domain([0, 7])
+             .range([0, w])
+  
+
   
   legend.selectAll("rect")
         .data(colors)
@@ -49,6 +90,7 @@ let tooltip = d3.select("body")
         .attr("x", (d, i)=>{
     return scalex(i)
   })
+        
        .attr("fill", (d)=>d)
        .attr("y", 35)
        .attr("stroke", "black")
@@ -59,11 +101,11 @@ let tooltip = d3.select("body")
         .append("text")
         .text((d)=> d)
         .attr("x", (d, i)=>{
-    return scalex(i) + 25
+    return scalex(i) - 10
   })
        .attr("fill", "black")
-       .attr("font-size", "15px")
-       .attr("y", 50)
+       .attr("font-size", w/60)
+       .attr("y", 75)
   
   
 
@@ -141,7 +183,7 @@ let tooltip = d3.select("body")
       .attr("x", (d) => d.x0 + 5)
       .attr("y", (d, i) => d.y0 + 15 + (i * 10))       // offset by index 
       .text((d) => d.text)
-      .attr("font-size", "0.6em")
+      .attr("font-size", h/80)
       .attr("fill", "black");
 
 
